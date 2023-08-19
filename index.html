@@ -12,8 +12,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li v-for="link in links" class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">{{ link }}</a>
+              <li v-for="(link, index) in links" class="nav-item" :key="index">
+                <a class="nav-link" aria-current="page" :href="link.url">{{ link.text }}</a>
+                <!-- v-bind: is same as : -->
               </li>
             </ul>
         </div>
@@ -26,7 +27,11 @@
         Vue.createApp({
             data(){
                 return {
-                    links: ['Home','About','Contact']
+                    links: [
+                        {text: 'Home', url: 'index.html'},
+                        {text: 'About', url: 'about.html'},
+                        {text: 'Contact', url: 'contact.html'}
+                    ]
                 }
             }
         }).mount('nav');
