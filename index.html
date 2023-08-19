@@ -8,13 +8,16 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg"
+        :class="{'navbar-light bg-light': !useDarkMode, 'navbar-dark bg-dark': useDarkMode}"
+    >
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li v-for="(page, index) in pages" class="nav-item" :key="index">
                 <a 
                     class="nav-link" 
+                    :class="{active: activePage == index}"
                     aria-current="page" 
                     :href="page.link.url"
                     :title="`This link goes to the ${page.link.text} page`"
@@ -23,6 +26,9 @@
                 <!-- v-bind: is same as : and v-on:click="" is same as @-->
               </li>
             </ul>
+            <form class="d-flex">
+                <button class="btn btn-primary" @click.prevenr="useDarkMode = !useDarkMode">Toggle Navbar</button>
+            </form>
         </div>
     </nav>
     <div id="content" class="container">
@@ -34,6 +40,7 @@
             data(){
                 return {
                     activePage: 0,
+                    useDarkMode: false,
                     pages: [
                         {
                             link: {text: 'Home', url: 'index.html'},
