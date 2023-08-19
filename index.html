@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg"
-        :class="{'navbar-light bg-light': !useDarkMode, 'navbar-dark bg-dark': useDarkMode}"
+        :class="navbarClasses"
     >
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
@@ -37,6 +37,16 @@
     </div>
     <script>
         Vue.createApp({
+            computed: {
+                navbarClasses() {
+                    return {
+                        'navbar-light': !this.useDarkMode,
+                        'bg-light': !this.useDarkMode,
+                        'navbar-dark': this.useDarkMode,
+                        'bg-dark': this.useDarkMode
+                    }
+                }
+            },
             data(){
                 return {
                     activePage: 0,
