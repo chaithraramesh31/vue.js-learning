@@ -6,10 +6,12 @@
             :nav-link-click="(index) => activePage = index"
         >
         </navbar>
-        <page-view :page="pages[activePage]"></page-view>
+        <page-view 
+            :page="pages[activePage]"
+        ></page-view>
     </div>
 </template>
-
+<!-- v-if="pages.length > 0" -->
 <script>
 import Navbar from './components/Navbar.vue';
 import PageView from './components/PageView.vue';
