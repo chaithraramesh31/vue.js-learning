@@ -43,10 +43,13 @@ export default {
     components: {
         NavbarLink
     },
-    inject: ['$pages'],
+    inject: ['$pages','$bus'],
     created(){
         this.getThemeSetting();
         this.pages = this.$pages.getAllPages();
+        this.$bus.$on('page-updated', () => {
+            this.pages = [...this.$pages.getAllPages()];
+        })
     },
     computed: {
         publishedPages() {
