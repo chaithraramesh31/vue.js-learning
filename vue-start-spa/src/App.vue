@@ -13,13 +13,9 @@
 <!-- v-if="pages.length > 0" -->
 <script>
 import Navbar from './components/Navbar.vue';
-import PageView from './components/PageView.vue';
-import CreatePage from './components/CreatePage.vue';
 export default {
     components: {
-        Navbar,
-        PageView,
-        CreatePage
+        Navbar
     },
     methods: {
         async getPages() {
