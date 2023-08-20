@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Page Title</h1>
-        <p>Content</p>
+        <p>{{$route.params.index}}</p>
         <!-- <h1>{{page.pageTitle}}</h1>
         <p>{{page.content}}</p> -->
     </div>
@@ -9,16 +9,8 @@
 
 <script>
 export default {
-    props: {
-        page: {
-            type: Object,
-            default(rawProps){
-                return {
-                    pageTitle: '',
-                    content: ''
-                }
-            }
-        }
-    }
+ created(){
+    // console.log(this.$route.params);
+ }
 }
 </script>

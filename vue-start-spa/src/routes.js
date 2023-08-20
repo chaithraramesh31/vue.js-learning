@@ -5,7 +5,7 @@ import CreatePage from './components/CreatePage.vue';
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        {path: '/', component: PageView},
+        {path: '/:index?', component: PageView},
         {path: '/create', component: CreatePage}
     ]
 })
