@@ -3,12 +3,11 @@
         <navbar 
             :pages="pages" 
             :active-page="activePage" 
-            :nav-link-click="(index) => activePage = index"
         >
         </navbar>
-        <!-- <page-view 
+        <page-view 
             :page="pages[activePage]"
-        ></page-view> -->
+        ></page-view>
         <create-page
             @page-created="pageCreated"
         ></create-page>
@@ -26,7 +25,10 @@ export default {
         CreatePage
     },
     created() {
-        this.getPages()
+        this.getPages();
+        this.$bus.$on('navbarLinkActivated', (index) => {
+            this.activePage = index;
+        })
     },
     data() {
         return {

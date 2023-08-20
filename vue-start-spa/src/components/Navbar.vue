@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
+            <!-- <li v-for="(page, index) in publishedPages" class="nav-item" :key="index"> -->
                 <!-- <a 
                     class="nav-link" 
                     :class="{active: activePage == index}"
@@ -16,11 +16,13 @@
                 >{{ page.link.text }}</a> -->
                 <!-- v-bind: is same as : and v-on:click="" is same as @-->
                 <navbar-link
+                v-for="(page, index) in publishedPages" class="nav-item" :key="index"
                 :page="page"
+                :index="index"
                 :isActive="activePage == index"
-                @click.prevent="navLinkClick(index)"
+                @activated="$emit('activated')"
                 ></navbar-link>
-            </li>
+            <!-- </li> -->
             </ul>
             <form class="d-flex">
                 <button class="btn btn-primary" @click.prevent="changeTheme()">Toggle Navbar</button>
@@ -43,7 +45,7 @@ export default {
             return this.pages.filter(p => p.published)
         }
     },
-    props:['pages', 'activePage', 'navLinkClick'],
+    props:['pages', 'activePage'],
     data() {
         return {
             theme: 'dark'
