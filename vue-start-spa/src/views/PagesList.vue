@@ -6,7 +6,7 @@
                 New Page
             </router-link>
         </div>
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -18,6 +18,7 @@
                 <tr
                     v-for="(page, index) in $pages.getAllPages()"
                     :key="index"
+                    @click.prevent="goToPage(index)"
                 >
                     <td>{{page.pageTitle}}</td>
                     <td>{{page.link.text}}</td>
@@ -30,11 +31,28 @@
 
 <script setup>
 import {ref, reactive, inject} from 'vue';
-// const counter = ref(0); // this is similar to {value: 0}
-const data = reactive({counter: 0});
-const $pages = inject('$pages')
-function click() {
-    // counter.value++
-    data.counter++;
+import {useRouter} from 'vue-router';
+
+const $pages = inject('$pages');
+const router = useRouter();
+function goToPage(index) {
+    router.push({path: `pages/${index}/edit`})
 }
+
+
+
+
+
+// const counter = ref(0); // this is similar to {value: 0}
+// const data = reactive({counter: 0});
+// function click() {
+//     // counter.value++
+//     data.counter++;
+// }
 </script>
+
+<style scope>
+    td:hover {
+        cursor: pointer;
+    }
+</style>
