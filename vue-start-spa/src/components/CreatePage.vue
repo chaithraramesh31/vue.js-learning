@@ -1,5 +1,5 @@
 <template>
-    <form action="" class="container mb-3">
+    <form action="" class="container mb-3 mt-3">
         <div class="row">
             <div class="col-md-8">
                 <div class="mb-3">
@@ -75,6 +75,13 @@ export default {
             this.linkText = '',
             this.linkUrl = '',
             this.published = true
+        }
+    },
+    watch: {
+        pageTitle(newTitle, oldTitle) {
+            if(this.linkText == oldTitle){
+                this.linkText = newTitle
+            }
         }
     }
 }
