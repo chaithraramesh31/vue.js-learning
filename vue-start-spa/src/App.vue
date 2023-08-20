@@ -10,7 +10,7 @@
             :page="pages[activePage]"
         ></page-view> -->
         <create-page
-            :page-created="pageCreated"
+            @page-created="pageCreated"
         ></create-page>
     </div>
 </template>
